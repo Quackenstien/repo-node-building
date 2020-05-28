@@ -1,6 +1,8 @@
+//Node Dependencies
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+//Function to write the ReadMe file
 function writeToFile(fileName, data) {
   fs.writeFile(fileName, data, function (err) {
     if (err) {
@@ -8,7 +10,7 @@ function writeToFile(fileName, data) {
     }
   });
 }
-
+//User prompts and questions
 inquirer
   .prompt([
     {
@@ -28,6 +30,8 @@ inquirer
     },
   ])
 
+  //Collecting the data and displaying it on the read me in the proper format.
+  //Also destructuring the objects.
   .then((results) => {
     const { user, aboutMe, contact } = results;
     let readMe = ` 
