@@ -1,6 +1,14 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+function writeToFile(fileName, data) {
+  fs.writeFile(fileName, data, function (err) {
+    if (err) {
+      return console.log(err);
+    }
+  });
+}
+
 inquirer
   .prompt([
     {
@@ -22,16 +30,14 @@ inquirer
 
   .then((results) => {
     const { user, aboutMe, contact } = results;
-    let readMe = ` # ${user}
-      ## About Me
-      ${aboutMe}
-      ## Contact Me
-      ${contact}`;
+    let readMe = ` 
+# ${user}
 
-    fs.writeFile("ReadMe.md", readMe, function (err) {
-      if (err) {
-        return console.log(err);
-      }
-      console.log(results);
-    });
+## About Me
+${aboutMe}
+
+## Contact Me
+${contact}`;
+
+    writeToFile("ReadMe.md", readMe);
   });
