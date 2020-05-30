@@ -36,17 +36,21 @@ inquirer
     },
     {
       name: "license",
-      type: "input",
+      type: "checkbox",
       message: "What type of license do you have?",
+      choices: [
+        "None",
+        "![GitHub](https://img.shields.io/github/license/quackenstien/repo-node-building)",
+      ],
     },
   ])
 
   //Collecting the data and displaying it on the read me in the proper format.
   //Also destructuring the objects.
   .then((results) => {
-    const { user, aboutMe, contact } = results;
+    const { title, para, table, install, usage, license } = results;
     let readMe = ` 
-# Project ${title}
+# ${title}
 ${para}
 
 ## Table of Contents
