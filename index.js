@@ -19,6 +19,24 @@ inquirer
       message: "Give your project a title.",
     },
     {
+      name: "table",
+      type: "checkbox",
+      message:
+        "What does your table of contents consist of? (Please chose all that apply)",
+      choices: [
+        "Getting Started",
+        "Installing",
+        "Running Test",
+        "Deployment",
+        "Built With",
+        "Contributing",
+        "Usage",
+        "Questions",
+        "Licencees",
+        "Description",
+      ],
+    },
+    {
       name: "para",
       type: "input",
       message: "Please write a one paragraph of project description.",
@@ -43,12 +61,17 @@ inquirer
         "![GitHub](https://img.shields.io/github/license/quackenstien/repo-node-building)",
       ],
     },
+    {
+      name: "contribute",
+      type: "input",
+      message: "Who contributed to the repo?",
+    },
   ])
 
   //Collecting the data and displaying it on the read me in the proper format.
   //Also destructuring the objects.
   .then((results) => {
-    const { title, para, table, install, usage, license } = results;
+    const { title, para, table, install, usage, license, contribute } = results;
     let readMe = ` 
 # ${title}
 ${para}
@@ -63,7 +86,10 @@ ${install}
 ${usage}
 
 ## License
-${license}`;
+${license}
+
+## Contributing
+${contribute}`;
 
     writeToFile("ReadMe.md", readMe);
   });
