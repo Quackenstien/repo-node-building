@@ -66,12 +66,32 @@ inquirer
       type: "input",
       message: "Who contributed to the repo?",
     },
+    {
+      name: "test",
+      type: "input",
+      message: "Explain how to run the automated tests for this system.",
+    },
+    {
+      name: "questions",
+      type: "input",
+      message: "Write contact info here.",
+    },
   ])
 
   //Collecting the data and displaying it on the read me in the proper format.
   //Also destructuring the objects.
   .then((results) => {
-    const { title, para, table, install, usage, license, contribute } = results;
+    const {
+      title,
+      para,
+      table,
+      install,
+      usage,
+      license,
+      contribute,
+      test,
+      questions,
+    } = results;
     let readMe = ` 
 # ${title}
 ${para}
@@ -89,7 +109,13 @@ ${usage}
 ${license}
 
 ## Contributing
-${contribute}`;
+${contribute}
+
+## Test
+${test}
+
+## Questions
+If you have any questions please contact me at ${questions}`;
 
     writeToFile("ReadMe.md", readMe);
   });
