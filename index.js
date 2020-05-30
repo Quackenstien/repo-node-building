@@ -1,4 +1,4 @@
-//Node Dependencies
+//Dependencies
 const inquirer = require("inquirer");
 const fs = require("fs");
 
@@ -14,19 +14,30 @@ function writeToFile(fileName, data) {
 inquirer
   .prompt([
     {
-      name: "user",
+      name: "title",
       type: "input",
-      message: "What is your name?",
+      message: "Give your project a title.",
     },
     {
-      name: "aboutMe",
+      name: "para",
       type: "input",
-      message: "Tell us about yourself.",
+      message: "Please write a one paragraph of project description.",
     },
     {
-      name: "contact",
+      name: "install",
       type: "input",
-      message: "What is your email?",
+      message:
+        "Please write a brief description on how to install your application.",
+    },
+    {
+      name: "usage",
+      type: "input",
+      message: "Please explain what your app is to be used for.",
+    },
+    {
+      name: "license",
+      type: "input",
+      message: "What type of license do you have?",
     },
   ])
 
@@ -35,13 +46,20 @@ inquirer
   .then((results) => {
     const { user, aboutMe, contact } = results;
     let readMe = ` 
-# ${user}
+# Project ${title}
+${para}
 
-## About Me
-${aboutMe}
+## Table of Contents
+${table}
 
-## Contact Me
-${contact}`;
+## Installation
+${install}
+
+## Usage
+${usage}
+
+## License
+${license}`;
 
     writeToFile("ReadMe.md", readMe);
   });
